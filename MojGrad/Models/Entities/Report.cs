@@ -1,18 +1,14 @@
-﻿namespace MojGrad.Models.Entities
+﻿using MojGrad.Models.Enums;
+
+namespace MojGrad.Models.Entities
 {
     public class Report : BaseEntity
     {
-        public string? Title { get; set; } 
-        public string? Description { get; set; } 
-        /// <summary>
-        /// Gets or sets the type of the report.
-        /// </summary>
-        /// <value>
-        /// public ReportType Type { get; set; } = ReportType.Problem;
-        /// public enum ReportType { Problem, Praise }
-        ///</value>
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public ReportType Type { get; set; } = ReportType.Problem;
 
         // Navigation properties
         public int CategoryId { get; set; }
@@ -20,12 +16,10 @@
 
         public int MunicipalityId { get; set; }
         public Municipality Municipality { get; set; } = null!;
-
         public ReportStatus Status { get; set; } = ReportStatus.Submitted;
 
-        public string? ImagePath { get; set; }
-
-        public string? UserId { get; set; }
+        public string ImagePath { get; set; } = string.Empty;
+        public string UserId { get; set; } = string.Empty;
         public ApplicationUser User { get; set; } = null!;
 
 

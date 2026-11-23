@@ -167,6 +167,7 @@ namespace MojGrad.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("ChangedByUser")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -327,6 +328,7 @@ namespace MojGrad.Migrations
                         .HasColumnType("character varying(2000)");
 
                     b.Property<string>("ImagePath")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<double>("Latitude")
@@ -347,7 +349,12 @@ namespace MojGrad.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
 
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -370,9 +377,11 @@ namespace MojGrad.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ChangedByUserId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Comment")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
@@ -476,7 +485,8 @@ namespace MojGrad.Migrations
                     b.HasOne("MojGrad.Models.Entities.ApplicationUser", "User")
                         .WithMany("Reports")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
@@ -490,7 +500,8 @@ namespace MojGrad.Migrations
                     b.HasOne("MojGrad.Models.Entities.ApplicationUser", "ChangedByUser")
                         .WithMany("StatusHistory")
                         .HasForeignKey("ChangedByUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("MojGrad.Models.Entities.Report", "Report")
                         .WithMany("StatusHistory")

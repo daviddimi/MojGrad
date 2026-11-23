@@ -21,6 +21,7 @@ namespace MojGrad.Data
             {
                 e.Property(r => r.Title).IsRequired().HasMaxLength(150);
                 e.Property(r => r.Description).IsRequired().HasMaxLength(2000);
+                e.Property(r => r.Type).HasConversion<string>();
                 e.Property(r => r.Status).HasConversion<string>();
 
                 e.HasOne(r => r.Category).WithMany(c => c.Reports)
